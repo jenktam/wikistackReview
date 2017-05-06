@@ -24,6 +24,9 @@ const Page = db.define('page', {
   }
 });
 
+
+//  a getter method allows for us to create a 'virtual' field when any query is made, so that as a user we see our table with the attribute route
+
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING,
@@ -37,6 +40,7 @@ const User = db.define('user', {
 
 
 module.exports = {
+  db: db,
   Page: Page,
   User: User
 }
