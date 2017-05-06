@@ -1,0 +1,34 @@
+{
+  "name": "wikistack_review",
+  "version": "1.0.0",
+  "description": "node_modules",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jenktam/wikistackReview.git"
+  },
+  "author": "Jen Tam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jenktam/wikistackReview/issues"
+  },
+  "homepage": "https://github.com/jenktam/wikistackReview#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "nodemon": "^1.11.0",
+    "nunjucks": "^3.0.0",
+    "pg": "^6.1.5",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1"
+  }
+}
