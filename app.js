@@ -7,6 +7,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const nunjucks = require("nunjucks");
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
 
 module.exports = app;
 
@@ -21,5 +23,5 @@ app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render);// when res.render works with html files, have it use nunjucks
 
 // Connect to routes by setting 1) path, 2) handlers
-app.use('/wiki', require('./routes/wiki'));
-app.use('/users', require('./routes/user'));
+app.use('/wiki', wikiRouter);
+app.use('/user', userRouter);
