@@ -1,8 +1,9 @@
+// Deals with what renders on page to user on front end via routes
+
 'use strict';
 
 const express = require("express");
 const app = express();
-const routes = require("./routes");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const nunjucks = require("nunjucks");
@@ -18,3 +19,7 @@ app.use(bodyParser.json());
 var env = nunjucks.configure('views', {noCache: true});
 app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render);// when res.render works with html files, have it use nunjucks
+
+// Connect to routes by setting 1) path, 2) handlers
+app.use('/wiki', require('./routes/wiki'));
+app.use('/users', require('./routes/user'));

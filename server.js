@@ -1,10 +1,11 @@
+// Deals with connection to DB
+
 'use strict';
 
-const express = require("express");
-const app = express();
 const http = require('http');
 const server = http.createServer();
 const models = require('./models');
+const app = require('./app');
 const Promise = require('bluebird');
 
 server.on('request', require('./app'));
@@ -16,7 +17,7 @@ models.User.sync({})
   return models.Page.sync({})
 })
 .then(function(){
-  app.listen(3000, () => console.log("Listening on port 3000"));
+  server.listen(3000, () => console.log("Listening on port 3000"));
 })
 .catch(console.error);
 
