@@ -21,13 +21,26 @@ const Page = db.define('page', {
     type: Sequelize.ENUM,
     values: ['open', 'closed'], // for array options
     allowNull: true
-  }
+  },
+  date: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
+  },
 },{
   getterMethods: {
     route: function() {
       '/wiki/' + this.urlTitle;
     }
-  }
+  },
+    hooks: {
+      beforeValidate: function(page) {
+          if (page.title) {
+              page.urlTitle = page.title.replace(/\s/g, '_').replace(/\W/g, '');
+          } else {
+              page.urlTitle = Math.random().toString(36).substring(2, 7);
+          }
+      }
+    }
 });
 
 const User = db.define('user', {
@@ -39,6 +52,10 @@ const User = db.define('user', {
     type:Sequelize.STRING,
     allowNull: false
   }
+});
+
+Page.belongsTo(User, {
+    as: 'author'
 });
 
 
