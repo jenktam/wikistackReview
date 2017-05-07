@@ -4,7 +4,11 @@
   <h3>Pages</h3>
   <hr>
   <ul class="list-unstyled">
-    <li>This is the index.html page</li>
-    <!-- PLACEHOLDER LIST OF PAGES -->
-  </ul>
+    {% for page in pages %}
+
+      <li> <a href="{{ page.route }}">{{ page.title }}</a>
+      </li>
+
+    {% endfor %}
+</ul>
 {% endblock %}

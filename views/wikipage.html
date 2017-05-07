@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h3>{{ page.title }}
+<h3>{{ page.title }} title
     <small> (<a href="{{ page.route }}/similar">Similar</a>)</small>
 </h3>
 <h4>by <a href="/users/{{ page.author.id }}">{{ page.author.name }}</a></h4>
@@ -13,7 +13,9 @@
     {% endfor %}
 </ul>-->
 <hr/>
-<div class="page-body"></div>
+<div class="page-body">{{ page.content }}</div>
+<div class="page-body">{{ page.status }}</div>
+<div class="page-body">{{ page.date }}</div>
 <hr/>
 <a href="{{ page.route }}/edit" class="btn btn-primary">edit this page</a>
 <a href="{{ page.route }}/delete" class="btn btn-danger">delete this page</a>

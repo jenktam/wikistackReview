@@ -7,9 +7,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const volleyball = require("volleyball");
 const nunjucks = require("nunjucks");
-const routes = require('./routes')
-// const wikiRouter = require('./routes/wiki');
-// const userRouter = require('./routes/user');
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
 
 module.exports = app;
 
@@ -24,5 +23,10 @@ app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render);// when res.render works with html files, have it use nunjucks
 
 // Connect to index routes by setting 1) path, 2) handlers
-app.use('/', routes);
-// app.use('/user', userRouter);
+app.use('/wiki', wikiRouter);
+app.use('/user', userRouter);
+
+app.use( (err, req, res, next) => {
+  console.error(err);
+  res.status(500).send(err.message);
+});

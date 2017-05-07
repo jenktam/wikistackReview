@@ -28,8 +28,9 @@ const Page = db.define('page', {
   },
 },{
   getterMethods: {
+    // leave fn not => bc of this
     route: function() {
-      '/wiki/' + this.urlTitle;
+      return '/wiki/' + this.urlTitle;
     }
   },
     hooks: {
@@ -50,7 +51,8 @@ const User = db.define('user', {
   },
   email: {
     type:Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   }
 });
 
