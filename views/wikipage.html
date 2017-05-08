@@ -5,13 +5,13 @@
     <small> (<a href="{{ page.route }}/similar">Similar</a>)</small>
 </h3>
 <h4>by <a href="/users/{{ page.author.id }}">{{ page.author.name }}</a></h4>
-<!--<ul>
+<ul>
     {% for tag in page.tags %}
     <li>
         {{ tag }}
     </li>
     {% endfor %}
-</ul>-->
+</ul>
 <hr/>
 <div class="page-body">{{ page.content }}</div>
 <div class="page-body">{{ page.status }}</div>

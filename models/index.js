@@ -26,6 +26,23 @@ const Page = db.define('page', {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
   },
+  tags: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+    defaultValue: [],
+    set: function (tags) {
+
+    tags = tags || [];
+
+    // if data not already an array. split and trim tags for later use
+    if (typeof tags === 'string') {
+        tags = tags.split(',').map(function (str) {
+            return str.trim();
+        });
+    }
+
+    this.setDataValue('tags', tags);
+    }
+  }
 },{
   getterMethods: {
     // leave fn not => bc of this
@@ -40,6 +57,17 @@ const Page = db.define('page', {
           } else {
               page.urlTitle = Math.random().toString(36).substring(2, 7);
           }
+      }
+    },
+    classMethods: {
+      findByTag: function(tag) {
+        return this.findAll({
+          where: {
+            tags: {
+              $contains: [tag]
+            }
+          }
+        })
       }
     }
 });

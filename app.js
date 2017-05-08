@@ -24,7 +24,7 @@ app.engine('html', nunjucks.render);// when res.render works with html files, ha
 
 // Connect to index routes by setting 1) path, 2) handlers
 app.use('/wiki', wikiRouter);
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 
 app.use( (err, req, res, next) => {
   console.error(err);

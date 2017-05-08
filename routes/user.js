@@ -8,7 +8,13 @@ const Page = models.Page;
 const User = models.User;
 
 router.get('/', (req, res, next) => {
-  // res.send("We made it to the GET /user route");
+
+  User.findAll({})
+  .then( (users) => {
+    console.log(users);
+    res.render('userspage', {users: users })
+  })
+  .catch(next)
 
 });
 
