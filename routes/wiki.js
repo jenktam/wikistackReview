@@ -20,9 +20,11 @@ router.get('/', (req, res, next) => {
 
 // implemented hook to fix post urlTitle not null validation
 // need to build GET /wiki/:urlTitle before can show page from clicking button
+// authoring a page section
 router.post('/', (req, res, next) => {
   User.findOrCreate({
     where: {
+      // author below is snakecase and comes from belongTo association set
       email: req.body.authorEmail,
       name: req.body.authorName
     }
@@ -37,7 +39,7 @@ router.post('/', (req, res, next) => {
       tags: req.body.tags
     })
     .then( function(createdPage) {
-      console.log("req.body",req.body)
+      // console.log("req.body",req.body)
       return createdPage.setAuthor(user); // using association methods!! relationship method from belongTo in models/index.js
     })
     .then( (createdPage) => {

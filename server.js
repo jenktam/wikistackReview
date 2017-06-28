@@ -12,9 +12,9 @@ server.on('request', require('./app'));
 
 server.listen(3000, () => {
   console.log("Listening on port 3000!")
-  models.User.sync({}) // force:true
+  models.User.sync({force: true}) // force:true
   .then(() =>
-  models.Page.sync({})
+  models.Page.sync({force: true})
   .catch(console.error.bind(console)));
 });
 

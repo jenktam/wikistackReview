@@ -6,6 +6,7 @@ const router = express.Router();
 const models = require('../models');
 const Page = models.Page;
 const User = models.User;
+var Promise = require('bluebird');
 
 router.get('/', (req, res, next) => {
 
@@ -26,6 +27,23 @@ router.get('/add', (req, res, next) => {
   res.render('addpage')
 });
 
+router.get('/:userId', (req,res,next) => {
+  var findUser = User.findById(req.params.userId);
+
+  var findPages = Page.findAll({
+    where: {
+      authorId: req.params.userId
+    }
+  });
+
+  Promise.all([findUser, findPages])
+  .spread( function(user, userPages) {
+    res.render('userpages', {pages: userPages,
+    user: user}
+    )
+  })
+  .catch(next)
+});
 
 
 module.exports = router;
